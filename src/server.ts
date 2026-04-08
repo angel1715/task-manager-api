@@ -7,7 +7,22 @@ const app = express();
 
 dbConnection();
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://task-manager-frontend-swfq.vercel.app/"
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+}));
+
 app.use("/", authRoutes);
 app.use("/", taskRoutes);
 
