@@ -8,19 +8,11 @@ const app = express();
 dbConnection();
 app.use(express.json());
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://task-manager-frontend-swfq.vercel.app"
-];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  }
+  origin: [
+    "http://localhost:3000",
+    "https://tu-app.vercel.app"
+  ]
 }));
 
 app.use("/", authRoutes);
