@@ -10,7 +10,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://task-manager-frontend-swfq.vercel.app/"
+  "https://task-manager-frontend-swfq.vercel.app"
 ];
 
 app.use(cors({
